@@ -1,28 +1,29 @@
-#ifndef CONSTANT_HPP
-#define CONSTANT_HPP
+#ifndef VARIABLE_HPP
+#define VARIABLE_HPP
 
 #include "expression.hpp"
 
 #include <cstdint>
+#include <string>
 
 namespace ImintMath
 {
 
-class Constant : public Expression
+class Variable : public Expression
 {
   private:
-    const int64_t value;
+    const std::string name;
 
   protected:
 
     virtual std::string getStrRepr( bool withParantheses ) const override;
 
   public:
-    Constant( const int64_t value );
+    Variable( const std::string name );
 
     virtual Expression* simplify() const override;
 
-    int64_t getValue() const;
+    std::string getName() const;
 };
 
 }
