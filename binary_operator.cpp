@@ -1,5 +1,7 @@
 #include "binary_operator.hpp"
 
+#include "expression.hpp"
+#include "constant.hpp"
 #include <cstdint>
 #include <string>
 #include <stdexcept>
@@ -46,6 +48,26 @@ std::string getStrRepr( bool withParantheses ) const
   }
 
   return strRepr;
+}
+
+Expression* simplify() const
+{
+  const Expression* first = this->first->simplify();
+
+  const Expression* second = this->second->simplify();
+
+  const Constant* firstConst = dynamic_cast<Constant*>( first );
+
+  const Constant* secondConst = dynamic_cast<Constant*>( second );
+
+  if( firstConst != nullptr && secondConst != nullptr )
+  {
+    return this->calculate( firstConst, secondConst );
+  }
+  else
+  {
+    return new BinaryOperator( first, second );
+  }
 }
 
 }

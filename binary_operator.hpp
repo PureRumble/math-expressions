@@ -23,6 +23,10 @@ class BinaryOperator : public Expression
 
     virtual std::string getName() const = 0;
 
+    virtual Expression* simplify() const override;
+
+    virtual Constant* calculate( Constant* first, Constant* second ) const = 0;
+
   public:
     BinaryOperator( const Expression* first, const Expression* second );
 
