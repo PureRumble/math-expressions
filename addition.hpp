@@ -1,7 +1,7 @@
 #ifndef ADDITION_HPP
 #define ADDITION_HPP
 
-#include "binaryoperator.hpp"
+#include "binary_operator.hpp"
 #include "expression.hpp"
 #include "constant.hpp"
 
@@ -29,7 +29,7 @@ class Addition : public BinaryOperator
 
     Addition( const Addition& addition );
 
-    virtual BinaryOperator* copy() const override;
+    virtual Expression* copy() const override;
 };
 
 }
