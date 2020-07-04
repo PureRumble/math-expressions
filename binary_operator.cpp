@@ -32,4 +32,20 @@ BinaryOperator::~BinaryOperator()
   delete second;
 }
 
+std::string getStrRepr( bool withParantheses ) const
+{
+  std::string strRepr = this->getName();
+
+  strRepr = this->first->getStrRepr( true ) + strRepr;
+
+  strRepr += this->second->getStrRepr( true );
+
+  if( withParantheses == true )
+  {
+    strRepr = "(" + strRepr + ")";
+  }
+
+  return strRepr;
+}
+
 }

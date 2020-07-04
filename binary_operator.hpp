@@ -19,6 +19,10 @@ class BinaryOperator : public Expression
   protected:
     BinaryOperator* copy() const = 0;
 
+    virtual std::string getStrRepr( bool withParantheses ) const override;
+
+    virtual std::string getName() const = 0;
+
   public:
     BinaryOperator( const Expression* first, const Expression* second );
 
