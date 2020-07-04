@@ -1,5 +1,6 @@
 #include "constant.hpp"
 
+#include "expression.hpp"
 #include <cstdint>
 #include <string>
 
@@ -10,6 +11,11 @@ Constant::Constant( const int64_t value ) : value( value )
 {
 
 }
+
+Expression* Constant::copy() const
+{
+  return new Constant( *this );
+};
 
 std::string Constant::getStrRepr( const bool withParantheses ) const
 {

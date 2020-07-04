@@ -13,12 +13,12 @@ class Constant : public Expression
   private:
     const int64_t value;
 
-  protected:
-
-    virtual std::string getStrRepr( bool withParantheses ) const override;
-
   public:
     Constant( const int64_t value );
+
+    virtual Expression* copy() const override;
+
+    virtual std::string getStrRepr( bool withParantheses ) const override;
 
     virtual Expression* simplify() const override;
 

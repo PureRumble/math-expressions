@@ -14,12 +14,12 @@ class Variable : public Expression
   private:
     const std::string name;
 
-  protected:
-
-    virtual std::string getStrRepr( bool withParantheses ) const override;
-
   public:
     Variable( const std::string name );
+
+    virtual Expression* copy() const override;
+
+    virtual std::string getStrRepr( bool withParantheses ) const override;
 
     virtual Expression* simplify() const override;
 
