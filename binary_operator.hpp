@@ -16,8 +16,13 @@ class BinaryOperator : public Expression
     const Expression* first;
     const Expression* second;
 
+  protected:
+    BinaryOperator* copy() const = 0;
+
   public:
     BinaryOperator( const Expression* first, const Expression* second );
+
+    BinaryOperator( const BinaryOperator& binaryOperator );
 
     virtual ~BinaryOperator() override;
 };

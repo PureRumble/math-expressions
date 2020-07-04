@@ -20,6 +20,12 @@ BinaryOperator::BinaryOperator(
   this->second = second;
 }
 
+BinaryOperator::BinaryOperator( const BinaryOperator& binaryOperator )
+{
+  this->first = binaryOperator.first->copy();
+  this->second = binaryOperator.second->copy();
+}
+
 BinaryOperator::~BinaryOperator()
 {
   delete first;
