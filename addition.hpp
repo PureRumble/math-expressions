@@ -27,7 +27,7 @@ class Addition : public BinaryOperator
   public:
     Addition( const Expression* first, const Expression* second );
 
-    Addition( const Addition& Addition );
+    Addition( const Addition& addition );
 
     virtual BinaryOperator* copy() const override;
 };
