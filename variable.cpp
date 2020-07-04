@@ -1,5 +1,6 @@
 #include "variable.hpp"
 
+#include "expression.hpp"
 #include <cstdint>
 #include <string>
 
@@ -9,6 +10,11 @@ namespace ImintMath
 Variable::Variable( const std::string name ) : name( name )
 {
 
+}
+
+Expression* Variable::copy() const
+{
+  return new Variable( *this );
 }
 
 std::string Variable::getStrRepr( const bool withParantheses ) const

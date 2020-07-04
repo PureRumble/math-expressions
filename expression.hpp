@@ -9,13 +9,14 @@ namespace ImintMath
 
 class Expression
 {
-  protected:
-      virtual std::string getStrRepr( bool withParantheses ) const = 0;
-
   public:
     virtual ~Expression() = default;
 
+    virtual Expression* copy() const = 0;
+
     virtual std::string toString() const;
+
+    virtual std::string getStrRepr( bool withParantheses ) const = 0;
 
     virtual Expression* simplify() const = 0;
 

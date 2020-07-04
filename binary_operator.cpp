@@ -34,7 +34,7 @@ BinaryOperator::~BinaryOperator()
   delete second;
 }
 
-std::string getStrRepr( bool withParantheses ) const
+std::string BinaryOperator::getStrRepr( bool withParantheses ) const
 {
   std::string strRepr = this->getName();
 
@@ -50,15 +50,15 @@ std::string getStrRepr( bool withParantheses ) const
   return strRepr;
 }
 
-Expression* simplify() const
+Expression* BinaryOperator::simplify() const
 {
   const Expression* first = this->first->simplify();
 
   const Expression* second = this->second->simplify();
 
-  const Constant* firstConst = dynamic_cast<Constant*>( first );
+  const Constant* firstConst = dynamic_cast<const Constant*>( first );
 
-  const Constant* secondConst = dynamic_cast<Constant*>( second );
+  const Constant* secondConst = dynamic_cast<const Constant*>( second );
 
   if( firstConst != nullptr && secondConst != nullptr )
   {
@@ -66,7 +66,7 @@ Expression* simplify() const
   }
   else
   {
-    return new BinaryOperator( first, second );
+    return this->construct( first, second );
   }
 }
 

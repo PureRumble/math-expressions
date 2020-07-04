@@ -17,15 +17,15 @@ class BinaryOperator : public Expression
     const Expression* second;
 
   protected:
-    virtual BinaryOperator* copy() const = 0;
-
-    virtual std::string getStrRepr( bool withParantheses ) const override;
-
     virtual std::string getName() const = 0;
 
-    virtual Expression* simplify() const override;
+    virtual Constant* calculate(
+      const Constant* first, const Constant* second
+    ) const = 0;
 
-    virtual Constant* calculate( Constant* first, Constant* second ) const = 0;
+    virtual BinaryOperator* construct(
+      const Expression* first, const Expression* second
+    ) const = 0;
 
   public:
     BinaryOperator( const Expression* first, const Expression* second );
@@ -33,6 +33,12 @@ class BinaryOperator : public Expression
     BinaryOperator( const BinaryOperator& binaryOperator );
 
     virtual ~BinaryOperator() override;
+
+    virtual BinaryOperator* copy() const = 0;
+
+    virtual std::string getStrRepr( bool withParantheses ) const override;
+
+    virtual Expression* simplify() const override;
 };
 
 }
