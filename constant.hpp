@@ -8,7 +8,7 @@
 namespace ImintMath
 {
 
-class Constant : Expression
+class Constant : public Expression
 {
   private:
     const int64_t value;

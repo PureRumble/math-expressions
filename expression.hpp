@@ -15,11 +15,11 @@ class Expression
   public:
     virtual ~Expression() = default;
 
-    std::string toString() const;
+    virtual std::string toString() const;
 
     virtual Expression* simplify() const = 0;
 
-    int64_t evaluate() const;
+    virtual int64_t evaluate() const;
 };
 
 }
