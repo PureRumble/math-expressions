@@ -34,7 +34,7 @@ class BinaryOperator : public Expression
 
     virtual ~BinaryOperator() override;
 
-    virtual BinaryOperator* copy() const = 0;
+    virtual Expression* copy() const = 0;
 
     virtual std::string getStrRepr( bool withParantheses ) const override;
 
