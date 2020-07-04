@@ -20,8 +20,6 @@ class Constant : public Expression
   public:
     Constant( const int64_t value );
 
-    Constant( const Constant& constant ) = default;
-
     virtual Expression* simplify() const override;
 
     int64_t getValue() const;
