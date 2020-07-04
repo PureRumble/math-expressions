@@ -10,11 +10,14 @@ namespace ImintMath
 
 class Constant : public Expression
 {
+  public:
+    using ConstType = int64_t;
+
   private:
-    const int64_t value;
+    const ConstType value;
 
   public:
-    Constant( const int64_t value );
+    Constant( const ConstType value );
 
     virtual Expression* copy() const override;
 
@@ -22,7 +25,7 @@ class Constant : public Expression
 
     virtual Expression* simplify() const override;
 
-    int64_t getValue() const;
+    ConstType getValue() const;
 };
 
 }

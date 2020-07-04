@@ -7,7 +7,7 @@
 namespace ImintMath
 {
 
-Constant::Constant( const int64_t value ) : value( value )
+Constant::Constant( const Constant::ConstType value ) : value( value )
 {
 
 }
@@ -27,7 +27,7 @@ Expression* Constant::simplify() const
   return new Constant( *this );
 }
 
-int64_t Constant::getValue() const
+Constant::ConstType Constant::getValue() const
 {
   return this->value;
 }
