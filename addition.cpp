@@ -1,7 +1,8 @@
-#include "binaryoperator.hpp"
+#include "addition.hpp"
+
+#include "binary_operator.hpp"
 #include "expression.hpp"
 #include "constant.hpp"
-
 #include <cstdint>
 #include <string>
 
@@ -14,20 +15,24 @@ Addition::Addition( const Expression* first, const Expression* second ) :
 
 }
 
-Addition::Addition( const Addition& Addition )
+Addition::Addition( const Addition& addition ) :
+  BinaryOperator::BinaryOperator( addition )
 {
 
 }
 
 std::string Addition::getName() const
 {
-
+  return "+";
 }
 
 Constant* Addition::calculate( const Constant* first, const Constant* second )
 const
 {
+  Constant::ConstType firstVal = first->getValue();
+  Constant::ConstType secondVal = second->getValue();
 
+  return new Constant( firstVal + secondVal );
 }
 
 BinaryOperator* Addition::construct(
@@ -35,12 +40,12 @@ BinaryOperator* Addition::construct(
 )
 const
 {
-
+  return new Addition( first, second );
 }
 
 Expression* Addition::copy() const
 {
-
+  return new Addition( *this );
 }
 
 }
