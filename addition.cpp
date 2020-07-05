@@ -3,7 +3,6 @@
 #include "binary_operator.hpp"
 #include "expression.hpp"
 #include "constant.hpp"
-#include <cstdint>
 #include <string>
 
 namespace ImintMath

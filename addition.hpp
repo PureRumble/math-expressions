@@ -5,7 +5,6 @@
 #include "expression.hpp"
 #include "constant.hpp"
 
-#include <cstdint>
 #include <string>
 
 namespace ImintMath
