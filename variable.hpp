@@ -23,7 +23,8 @@ class Variable : public Expression
 
     virtual std::string getStrRepr( bool withParantheses ) const override;
 
-    virtual Expression* simplify() const override;
+    virtual Expression* simplify( const Expression::VariableMap& map )
+    const override;
 
     std::string getName() const;
 };
