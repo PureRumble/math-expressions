@@ -13,7 +13,7 @@ class Variable;
 class Expression
 {
   public:
-    using VariableMap = std::unordered_map< Variable, int64_t >;
+    using VariableMap = int;//std::unordered_map< Variable, int64_t >;
 
     virtual ~Expression() = default;
 
@@ -25,7 +25,9 @@ class Expression
 
     Expression* simplify() const;
 
-    virtual Expression* simplify( const VariableMap& map ) const = 0;
+    Expression* simplify( const VariableMap& map );
+
+    Expression* simplifyRec( const VariableMap& map ) const = 0;
 
     virtual int64_t evaluate() const;
 };

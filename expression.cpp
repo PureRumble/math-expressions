@@ -40,7 +40,12 @@ int64_t Expression::evaluate() const
 Expression* Expression::simplify() const
 {
   Expression::VariableMap map;
-  return this->simplify( map );
+  return this->simplifyRec( map );
+}
+
+Expression* Expression::simplify( const Expression::VariableMap& map ) const
+{
+  return this->simplifyRec( map );
 }
 
 }
