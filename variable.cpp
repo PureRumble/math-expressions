@@ -14,11 +14,6 @@ Variable::Variable( const std::string name ) : name( name )
 
 }
 
-bool Variable::operator==( const Variable& variable ) const
-{
-  return this->name == variable.name;
-}
-
 Expression* Variable::copy() const
 {
   return new Variable( *this );

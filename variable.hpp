@@ -20,8 +20,6 @@ class Variable : public Expression
 
     Variable( const std::string name );
 
-    bool operator==( const Variable& variable ) const;
-
     virtual Expression* copy() const override;
 
     virtual std::string getStrRepr( bool withParantheses ) const override;
