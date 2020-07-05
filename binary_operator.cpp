@@ -50,11 +50,12 @@ std::string BinaryOperator::getStrRepr( bool withParantheses ) const
   return strRepr;
 }
 
-Expression* BinaryOperator::simplify( const Expression::VariableMap& map ) const
+Expression* BinaryOperator::simplifyRec( const Expression::VariableMap& map )
+const
 {
-  const Expression* first = this->first->simplify( map );
+  const Expression* first = this->first->simplifyRec( map );
 
-  const Expression* second = this->second->simplify( map );
+  const Expression* second = this->second->simplifyRec( map );
 
   const Constant* firstConst = dynamic_cast<const Constant*>( first );
 
