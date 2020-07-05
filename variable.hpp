@@ -15,6 +15,9 @@ class Variable : public Expression
     const std::string name;
 
   public:
+    using VariableMap =
+      std::unordered_map< Variable, int64_t >;
+
     Variable( const std::string name );
 
     bool operator==( const Variable& variable ) const;
@@ -30,14 +33,5 @@ class Variable : public Expression
 };
 
 }
-
-template<>
-struct std::hash< ImintMath::Variable >
-{
-  std::size_t operator()( const ImintMath::Variable& variable ) const
-  {
-    return std::hash<std::string>()( variable.getName() );
-  }
-};
 
 #endif
