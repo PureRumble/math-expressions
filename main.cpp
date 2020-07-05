@@ -69,7 +69,7 @@ int main()
   assert( addConst != nullptr );
   assert( addConst->getValue() == 16 );
 
-  Constant::ConstType constValue = binOp->evaluate();
+  Expression::ValueType constValue = binOp->evaluate();
   assert( constValue == 16 );
 
   delete binOp;
@@ -178,19 +178,6 @@ int main()
 
   delete addOp;
   delete addSimpl;
-
-
-
-  Expression::VariableMap map;
-
-  map[ Variable( "varA" ) ] = 12;
-  map[ Variable( "varA" ) ] = 20;
-  map[ Variable( "varB" ) ] = -10;
-
-  assert(
-    map[ Variable( "varA") ] == 20 &&
-    map[ Variable("varB" ) ] == -10
-  );
 
   return 0;
 }
