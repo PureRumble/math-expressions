@@ -1,5 +1,5 @@
-#ifndef ADDITION_HPP
-#define ADDITION_HPP
+#ifndef MULTIPLICATION_HPP
+#define MULTIPLICATION_HPP
 
 #include "binary_operator.hpp"
 #include "expression.hpp"
@@ -10,7 +10,7 @@
 namespace ImintMath
 {
 
-class Addition : public BinaryOperator
+class Multiplication : public BinaryOperator
 {
   protected:
     virtual std::string getName() const override;
@@ -24,9 +24,9 @@ class Addition : public BinaryOperator
     ) const override;
 
   public:
-    Addition( const Expression* first, const Expression* second );
+    Multiplication( const Expression* first, const Expression* second );
 
-    Addition( const Addition& addition );
+    Multiplication( const Multiplication& multiplication );
 
     virtual Expression* copy() const override;
 };

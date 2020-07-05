@@ -3,6 +3,7 @@
 #include "variable.hpp"
 #include "binary_operator.hpp"
 #include "addition.hpp"
+#include "multiplication.hpp"
 #include <cassert>
 #include <iostream>
 #include <stdexcept>
@@ -175,6 +176,31 @@ int main()
 
   delete addOp;
   delete addSimpl;
+
+
+
+  binOp =
+    new Multiplication(
+      new Multiplication( new Constant( 7 ), new Constant( 3 ) ),
+      new Variable( "varB" )
+    );
+
+  Multiplication* mulSimpl = dynamic_cast<Multiplication*>( binOp->simplify() );
+  assert( mulSimpl != nullptr );
+  assert( mulSimpl->toString() == "21*varB" );
+
+  delete binOp;
+  delete mulSimpl;
+
+
+
+  addOp =
+    new Addition(
+      new Multiplication( new Constant( 7 ), new Constant( 3 ) ),
+      new Multiplication( new Constant( -5 ), new Constant( -7 ) )
+    );
+
+  assert( addOp->evaluate() == 56 );
 
   return 0;
 }
