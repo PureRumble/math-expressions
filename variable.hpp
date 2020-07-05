@@ -17,6 +17,8 @@ class Variable : public Expression
   public:
     Variable( const std::string name );
 
+    bool operator==( const Variable& variable ) const;
+
     virtual Expression* copy() const override;
 
     virtual std::string getStrRepr( bool withParantheses ) const override;
@@ -27,5 +29,14 @@ class Variable : public Expression
 };
 
 }
+
+template<>
+struct std::hash< ImintMath::Variable >
+{
+  std::size_t operator()( const ImintMath::Variable& variable ) const
+  {
+    return std::hash<std::string>()( variable.getName() );
+  }
+};
 
 #endif

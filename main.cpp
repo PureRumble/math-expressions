@@ -3,10 +3,12 @@
 #include "variable.hpp"
 #include "binary_operator.hpp"
 #include "addition.hpp"
-#include "multiplication.hpp"
 #include <cassert>
 #include <iostream>
 #include <stdexcept>
+#include <unordered_map>
+
+#include <string>
 
 using namespace ImintMath;
 
@@ -179,28 +181,16 @@ int main()
 
 
 
-  binOp =
-    new Multiplication(
-      new Multiplication( new Constant( 7 ), new Constant( 3 ) ),
-      new Variable( "varB" )
-    );
+  std::unordered_map< Variable, Constant::ConstType > map;
 
-  Multiplication* mulSimpl = dynamic_cast<Multiplication*>( binOp->simplify() );
-  assert( mulSimpl != nullptr );
-  assert( mulSimpl->toString() == "21*varB" );
+  map[ Variable( "varA" ) ] = 12;
+  map[ Variable( "varA" ) ] = 20;
+  map[ Variable( "varB" ) ] = -10;
 
-  delete binOp;
-  delete mulSimpl;
-
-
-
-  addOp =
-    new Addition(
-      new Multiplication( new Constant( 7 ), new Constant( 3 ) ),
-      new Multiplication( new Constant( -5 ), new Constant( -7 ) )
-    );
-
-  assert( addOp->evaluate() == 56 );
+  assert(
+    map[ Variable( "varA") ] == 20 &&
+    map[ Variable("varB" ) ] == -10
+  );
 
   return 0;
 }
