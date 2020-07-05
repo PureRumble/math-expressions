@@ -23,7 +23,9 @@ class Expression
 
     virtual std::string getStrRepr( bool withParantheses ) const = 0;
 
-    virtual Expression* simplify() const = 0;
+    Expression* simplify() const;
+
+    virtual Expression* simplify( const VariableMap& map ) const = 0;
 
     virtual int64_t evaluate() const;
 };

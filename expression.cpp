@@ -37,4 +37,10 @@ int64_t Expression::evaluate() const
   return value;
 }
 
+Expression* Expression::simplify() const
+{
+  Expression::VariableMap map;
+  return this->simplify( map );
+}
+
 }
