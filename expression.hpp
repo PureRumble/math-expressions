@@ -11,7 +11,9 @@ namespace ImintMath
 class Expression
 {
   public:
-    using VariableMap = std::unordered_map< std::string, int64_t >;
+    using ValueType = int64_t;
+
+    using VariableMap = std::unordered_map< std::string, ValueType >;
 
     virtual ~Expression() = default;
 
@@ -27,7 +29,7 @@ class Expression
 
     virtual Expression* simplifyRec( const VariableMap& map ) const = 0;
 
-    virtual int64_t evaluate() const;
+    virtual ValueType evaluate() const;
 };
 
 }
