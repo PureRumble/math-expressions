@@ -23,7 +23,7 @@ class Constant : public Expression
 
     virtual std::string getStrRepr( bool withParantheses ) const override;
 
-    virtual Expression* simplify( const Expression::VariableMap& map )
+    virtual Expression* simplifyRec( const Expression::VariableMap& map )
     const override;
 
     ConstType getValue() const;

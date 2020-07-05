@@ -22,7 +22,7 @@ std::string Constant::getStrRepr( const bool withParantheses ) const
   return std::to_string( this->value );
 }
 
-Expression* Constant::simplify( const Expression::VariableMap& map ) const
+Expression* Constant::simplifyRec( const Expression::VariableMap& map ) const
 {
   return new Constant( *this );
 }

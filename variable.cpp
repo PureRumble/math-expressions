@@ -29,7 +29,7 @@ std::string Variable::getStrRepr( const bool withParantheses ) const
   return this->name;
 }
 
-Expression* Variable::simplify( const Expression::VariableMap& map ) const
+Expression* Variable::simplifyRec( const Expression::VariableMap& map ) const
 {
   return new Variable( *this );
 }
