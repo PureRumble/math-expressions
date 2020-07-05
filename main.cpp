@@ -181,7 +181,7 @@ int main()
 
 
 
-  std::unordered_map< Variable, Constant::ConstType > map;
+  Expression::VariableMap map;
 
   map[ Variable( "varA" ) ] = 12;
   map[ Variable( "varA" ) ] = 20;

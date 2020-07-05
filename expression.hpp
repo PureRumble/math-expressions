@@ -3,13 +3,18 @@
 
 #include <cstdint>
 #include <string>
+#include <unordered_map>
 
 namespace ImintMath
 {
 
+class Variable;
+
 class Expression
 {
   public:
+    using VariableMap = std::unordered_map< Variable, int64_t >;
+
     virtual ~Expression() = default;
 
     virtual Expression* copy() const = 0;
