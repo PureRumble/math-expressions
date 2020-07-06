@@ -45,7 +45,8 @@ class constructor. */
 
   public:
 /* Constructs a new BinaryOperator. The instances first and second are not
-copied and instead the pointer values are saved. */
+copied and instead the pointer values are saved. The pointers must not be
+nullptr. */
     BinaryOperator( const Expression* first, const Expression* second );
 
 /* Constructs a new BinaryOperator. The arg binaryOperator is deeply copied. */

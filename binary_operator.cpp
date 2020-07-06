@@ -53,13 +53,16 @@ std::string BinaryOperator::getStrRepr( bool withParantheses ) const
 Expression* BinaryOperator::simplifyRec( const Expression::VariableMap& map )
 const
 {
-  const Expression* first = this->first->simplifyRec( map );
+  const Expression* firstSimpl = this->first->simplifyRec( map );
 
-  const Expression* second = this->second->simplifyRec( map );
+  const Expression* secondSimpl = this->second->simplifyRec( map );
 
-  const Constant* firstConst = dynamic_cast<const Constant*>( first );
+// If both operands have been simplified down to Constants then this
+// BinaryOperator can be simplified down to a constant too (by simply
+// calculating it for the two new Constants).
+  const Constant* firstConst = dynamic_cast<const Constant*>( firstSimpl );
 
-  const Constant* secondConst = dynamic_cast<const Constant*>( second );
+  const Constant* secondConst = dynamic_cast<const Constant*>( secondSimpl );
 
   if( firstConst != nullptr && secondConst != nullptr )
   {
@@ -67,8 +70,12 @@ const
   }
   else
   {
-    return this->construct( first, second );
+// Otherwise atleast one of the operands weren't simplified down to a
+// Constant and then this BinaryOperator can't become a Constant either.
+// So construct and return a new simplified BinaryOperator.
+    return this->construct( firstSimpl, secondSimpl );
   }
 }
 
 }
+
