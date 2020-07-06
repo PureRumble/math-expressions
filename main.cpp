@@ -56,8 +56,17 @@ int main()
 
   assert( excThrown == true );
 
+  Expression::VariableMap varMap( { { "TestVarName", 55 } } );
+
+  constEval = dynamic_cast<Constant*>( variable->simplify( varMap ) );
+
+  assert( constEval != nullptr );
+  assert( constEval->getValue() == 55 );
+
   delete varEval;
+  delete constEval;
   delete variable;
+
 
 
   BinaryOperator* binOp = new Addition( new Constant( 11 ), new Constant( 5 ) );
@@ -122,6 +131,10 @@ int main()
   assert( addSimpl != nullptr );
   assert( addSimpl->toString() == "(5+var)+-1" );
 
+  varMap = Expression::VariableMap( { { "var", 50 } } );
+
+  assert( addOp->evaluate( varMap ) == 54 );
+
   delete addOp;
   delete addSimpl;
 
@@ -155,8 +168,19 @@ int main()
 
   assert( excThrown == true );
 
+  varMap = Expression::VariableMap( { { "varA", 50 } } );
+
+  Expression* exprSimpl = addOp->simplify( varMap );
+
+  assert( exprSimpl->toString() == "(55+(7+varB))+-1" );
+
+  varMap = Expression::VariableMap( { { "varA", 50 }, { "varB", -6 } } );
+
+  assert( addOp->evaluate( varMap ) == 55 );
+
   delete addOp;
   delete addSimpl;
+  delete exprSimpl;
 
 
 
