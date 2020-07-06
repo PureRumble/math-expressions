@@ -29,7 +29,9 @@ class Expression
 
     virtual Expression* simplifyRec( const VariableMap& map ) const = 0;
 
-    virtual ValueType evaluate() const;
+    ValueType evaluate() const;
+
+    ValueType evaluate( const VariableMap& map ) const;
 };
 
 }
