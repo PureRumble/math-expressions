@@ -10,6 +10,9 @@
 namespace ImintMath
 {
 
+/* Class instance represents a multiplication. For instance
+new Multiplication( new Constant( 5 ), new Constant( 7 ) ) is 5*7.
+*/
 class Multiplication : public BinaryOperator
 {
   protected:

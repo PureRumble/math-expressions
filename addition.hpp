@@ -10,6 +10,9 @@
 namespace ImintMath
 {
 
+/* Class instance represents an addition. For instance
+new Addition( new Constant( 5 ), new Constant( 7 ) ) is 5+7.
+*/
 class Addition : public BinaryOperator
 {
   protected:
@@ -34,3 +37,4 @@ class Addition : public BinaryOperator
 }
 
 #endif
+
