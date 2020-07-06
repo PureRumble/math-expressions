@@ -7,7 +7,7 @@
 namespace ImintMath
 {
 
-Constant::Constant( const Constant::ConstType value ) : value( value )
+Constant::Constant( const Expression::ValueType value ) : value( value )
 {
 
 }
@@ -22,12 +22,12 @@ std::string Constant::getStrRepr( const bool withParantheses ) const
   return std::to_string( this->value );
 }
 
-Expression* Constant::simplify() const
+Expression* Constant::simplifyRec( const Expression::VariableMap& map ) const
 {
   return new Constant( *this );
 }
 
-Constant::ConstType Constant::getValue() const
+Expression::ValueType Constant::getValue() const
 {
   return this->value;
 }

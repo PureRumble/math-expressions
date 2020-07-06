@@ -28,8 +28,8 @@ std::string Addition::getName() const
 Constant* Addition::calculate( const Constant* first, const Constant* second )
 const
 {
-  Constant::ConstType firstVal = first->getValue();
-  Constant::ConstType secondVal = second->getValue();
+  Expression::ValueType firstVal = first->getValue();
+  Expression::ValueType secondVal = second->getValue();
 
   return new Constant( firstVal + secondVal );
 }

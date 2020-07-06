@@ -1,8 +1,11 @@
 #include "variable.hpp"
 
 #include "expression.hpp"
+#include "constant.hpp"
 #include <cstdint>
 #include <string>
+#include <unordered_map>
+#include <cstddef>
 
 namespace ImintMath
 {
@@ -22,8 +25,15 @@ std::string Variable::getStrRepr( const bool withParantheses ) const
   return this->name;
 }
 
-Expression* Variable::simplify() const
+Expression* Variable::simplifyRec( const Expression::VariableMap& map ) const
 {
+  auto iter = map.find( this->getName() );
+
+  if( iter != map.end() )
+  {
+    return new Constant( iter->second );
+  }
+
   return new Variable( *this );
 }
 

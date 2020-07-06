@@ -14,13 +14,23 @@ std::string Expression::toString() const
   return this->getStrRepr( false );
 }
 
-int64_t Expression::evaluate() const
+Expression::ValueType Expression::evaluate() const
 {
-  Expression* simplified = this->simplify();
+  const Expression::VariableMap map;
+
+  return this->evaluate( map );
+}
+
+Expression::ValueType Expression::evaluate(
+  const Expression::VariableMap& map
+)
+const
+{
+  Expression* simplified = this->simplify( map );
 
   Constant* constant = dynamic_cast<Constant*>( simplified );
 
-  int64_t value = 0;
+  Expression::ValueType value = 0;
 
   if( constant != nullptr )
   {
@@ -35,6 +45,17 @@ int64_t Expression::evaluate() const
   }
 
   return value;
+}
+
+Expression* Expression::simplify() const
+{
+  Expression::VariableMap map;
+  return this->simplifyRec( map );
+}
+
+Expression* Expression::simplify( const Expression::VariableMap& map ) const
+{
+  return this->simplifyRec( map );
 }
 
 }

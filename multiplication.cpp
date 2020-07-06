@@ -32,8 +32,8 @@ Constant* Multiplication::calculate(
 )
 const
 {
-  Constant::ConstType firstVal = first->getValue();
-  Constant::ConstType secondVal = second->getValue();
+  Expression::ValueType firstVal = first->getValue();
+  Expression::ValueType secondVal = second->getValue();
 
   return new Constant( firstVal * secondVal );
 }

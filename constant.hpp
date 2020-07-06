@@ -10,22 +10,20 @@ namespace ImintMath
 
 class Constant : public Expression
 {
-  public:
-    using ConstType = int64_t;
-
   private:
-    const ConstType value;
+    const Expression::ValueType value;
 
   public:
-    Constant( const ConstType value );
+    Constant( const Expression::ValueType value );
 
     virtual Expression* copy() const override;
 
     virtual std::string getStrRepr( bool withParantheses ) const override;
 
-    virtual Expression* simplify() const override;
+    virtual Expression* simplifyRec( const Expression::VariableMap& map )
+    const override;
 
-    ConstType getValue() const;
+    Expression::ValueType getValue() const;
 };
 
 }

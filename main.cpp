@@ -3,10 +3,12 @@
 #include "variable.hpp"
 #include "binary_operator.hpp"
 #include "addition.hpp"
-#include "multiplication.hpp"
 #include <cassert>
 #include <iostream>
 #include <stdexcept>
+#include <unordered_map>
+
+#include <string>
 
 using namespace ImintMath;
 
@@ -54,8 +56,17 @@ int main()
 
   assert( excThrown == true );
 
+  Expression::VariableMap varMap( { { "TestVarName", 55 } } );
+
+  constEval = dynamic_cast<Constant*>( variable->simplify( varMap ) );
+
+  assert( constEval != nullptr );
+  assert( constEval->getValue() == 55 );
+
   delete varEval;
+  delete constEval;
   delete variable;
+
 
 
   BinaryOperator* binOp = new Addition( new Constant( 11 ), new Constant( 5 ) );
@@ -67,7 +78,7 @@ int main()
   assert( addConst != nullptr );
   assert( addConst->getValue() == 16 );
 
-  Constant::ConstType constValue = binOp->evaluate();
+  Expression::ValueType constValue = binOp->evaluate();
   assert( constValue == 16 );
 
   delete binOp;
@@ -120,6 +131,10 @@ int main()
   assert( addSimpl != nullptr );
   assert( addSimpl->toString() == "(5+var)+-1" );
 
+  varMap = Expression::VariableMap( { { "var", 50 } } );
+
+  assert( addOp->evaluate( varMap ) == 54 );
+
   delete addOp;
   delete addSimpl;
 
@@ -153,8 +168,19 @@ int main()
 
   assert( excThrown == true );
 
+  varMap = Expression::VariableMap( { { "varA", 50 } } );
+
+  Expression* exprSimpl = addOp->simplify( varMap );
+
+  assert( exprSimpl->toString() == "(55+(7+varB))+-1" );
+
+  varMap = Expression::VariableMap( { { "varA", 50 }, { "varB", -6 } } );
+
+  assert( addOp->evaluate( varMap ) == 55 );
+
   delete addOp;
   delete addSimpl;
+  delete exprSimpl;
 
 
 
@@ -176,31 +202,6 @@ int main()
 
   delete addOp;
   delete addSimpl;
-
-
-
-  binOp =
-    new Multiplication(
-      new Multiplication( new Constant( 7 ), new Constant( 3 ) ),
-      new Variable( "varB" )
-    );
-
-  Multiplication* mulSimpl = dynamic_cast<Multiplication*>( binOp->simplify() );
-  assert( mulSimpl != nullptr );
-  assert( mulSimpl->toString() == "21*varB" );
-
-  delete binOp;
-  delete mulSimpl;
-
-
-
-  addOp =
-    new Addition(
-      new Multiplication( new Constant( 7 ), new Constant( 3 ) ),
-      new Multiplication( new Constant( -5 ), new Constant( -7 ) )
-    );
-
-  assert( addOp->evaluate() == 56 );
 
   return 0;
 }
