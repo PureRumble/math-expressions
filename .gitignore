@@ -1,3 +1,2 @@
-ImintMath
-*.o
-
+obj_files
+bin
