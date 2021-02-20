@@ -15,7 +15,9 @@ using namespace ImintMath;
 
 int main()
 {
-  Constant* constant = new Constant( 77 );
+	std::cout << "Running tests" << std::endl;
+
+	Constant* constant = new Constant( 77 );
 
   assert( constant->getValue() == 77 );
 
@@ -224,6 +226,7 @@ int main()
   delete addSimpl;
   delete exprSimpl;
 
+	std::cout << "Tests completed successfully" << std::endl;
+
   return 0;
 }
-
